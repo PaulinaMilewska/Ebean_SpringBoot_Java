@@ -13,4 +13,8 @@ public class HelloService {
   public String hello() {
     return "Hello Service";
   }
+
+  public String hello1() {
+    return "index";
+  }
 }

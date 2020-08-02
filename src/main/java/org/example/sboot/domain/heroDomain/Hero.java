@@ -1,19 +1,15 @@
 package org.example.sboot.domain.heroDomain;
 
 import io.ebean.Model;
-import org.example.sboot.domain.vehicleDomain.Vehicle;
+import javax.persistence.*;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
-import java.util.List;
 
 
 @MappedSuperclass
 public class Hero extends Model {
 
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     int force;
