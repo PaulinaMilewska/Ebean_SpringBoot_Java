@@ -28,6 +28,51 @@ public class Weapon extends Model {
     @ManyToMany
     public Set<HeroContent> heroes = new HashSet<>();
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getKnockback() {
+        return knockback;
+    }
+
+    public void setKnockback(double knockback) {
+        this.knockback = knockback;
+    }
+
+    public int getUseTime() {
+        return useTime;
+    }
+
+    public void setUseTime(int useTime) {
+        this.useTime = useTime;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public Set<HeroContent> getHeroes() {
+        return heroes;
+    }
+
+    public void setHeroes(Set<HeroContent> heroes) {
+        this.heroes = heroes;
+    }
 }

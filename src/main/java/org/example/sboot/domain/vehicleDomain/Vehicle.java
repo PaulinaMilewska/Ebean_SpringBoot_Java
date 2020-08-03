@@ -1,7 +1,6 @@
 package org.example.sboot.domain.vehicleDomain;
 
 import io.ebean.Model;
-import org.example.sboot.domain.heroDomain.Hero;
 import org.example.sboot.domain.heroDomain.HeroContent;
 
 import javax.persistence.*;

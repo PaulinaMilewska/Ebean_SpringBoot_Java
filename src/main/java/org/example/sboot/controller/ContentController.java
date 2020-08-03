@@ -79,6 +79,18 @@ public class ContentController {
         return new ModelAndView("redirect:/viewhero");
     }
 
+    @RequestMapping(value = "/deletehero", method = RequestMethod.POST)
+    public ModelAndView delete(@RequestParam(value = "hero_id") String hero_id) {
+        HeroContent heroToDelete = getHeroById(Integer.parseInt(hero_id));
+        contentService.deleteHero(heroToDelete);
+//        server.delete(heroToDelete);
+        getContent().remove(heroToDelete);  //????????
+//        heroService.deleteHero(heroToDelete);
+        return new ModelAndView("redirect:/viewhero");
+    }
+
+
+
 
     private HeroContent getHeroById(@RequestParam int hero_id) {
         return list.stream().filter(f -> f.getId() == hero_id).findFirst().get();

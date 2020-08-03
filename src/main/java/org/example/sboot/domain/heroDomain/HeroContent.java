@@ -46,4 +46,12 @@ public class HeroContent extends Hero {
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
+
+    public Set<Weapon> getWeaponSet() {
+        return weaponSet;
+    }
+
+    public void setWeaponSet(Set<Weapon> weaponSet) {
+        this.weaponSet = weaponSet;
+    }
 }

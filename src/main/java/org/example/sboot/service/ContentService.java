@@ -3,6 +3,7 @@ package org.example.sboot.service;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.Transactional;
 import org.example.sboot.domain.heroDomain.HeroContent;
+import org.example.sboot.domain.weaponDomain.Weapon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,17 +43,25 @@ public class ContentService {
         return content;
     }
 
-    @RequestMapping(value = "/deletehero", method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam(value = "hero_id") String hero_id) {
-        HeroContent heroToDelete = getHeroById(Integer.parseInt(hero_id));
-        server.delete(heroToDelete);
-        getContent().remove(heroToDelete);  //????????
-//        heroService.deleteHero(heroToDelete);
+        @Transactional
+    public void deleteHero(HeroContent hero){
 
-        return new ModelAndView("redirect:/viewhero");
+        hero = server.find(HeroContent.class).findOne();
+//        hero = entityManager.find(HeroContent.class, hero.getId());
+        for (Weapon weapon : hero.getWeaponSet() ) {
+//            if (weapon.getHeroSet().size() == 1) {
+            if (weapon.getHeroes().size()==1) {
+                server.delete(weapon);
+//                entityManager.remove(weapon);
+            } else {
+//                weapon.getHeroSet().remove(hero);
+                weapon.getHeroes().remove(hero);
+            }
+        }
+
+        server.delete(hero);
+//        repository.delete(hero);
     }
 
-    private HeroContent getHeroById(@RequestParam int hero_id) {
-        return getContent().stream().filter(f -> f.getId() == hero_id).findFirst().get();
-    }
+
 }
